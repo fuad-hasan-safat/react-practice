@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { counterActions } from '../store';
+import { counterActions } from '../store/counter-slice';
 import classes from './Counter.module.css';
 
 const Counter = () => {
@@ -17,7 +17,7 @@ const Counter = () => {
   }
 
   function handleDecrement(){
-    dispatch(counterActions.decrement)
+    dispatch(counterActions.decrement())
   }
 
   function handleIncrease(){
