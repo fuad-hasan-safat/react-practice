@@ -7,6 +7,8 @@ export const CartContext = createContext({
     updateItemQuantity: () => { },
 })
 
+// Checking git commit
+
 
 function shoppingCartReducer(state, action) {
     console.log(DUMMY_PRODUCTS)
