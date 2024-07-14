@@ -10,6 +10,7 @@ const Products = (props) => {
         return (
           <ul key={index}>
             <ProductItem
+              id={sproduct.id}
               title={sproduct.title}
               price={sproduct.price}
               description={sproduct.description}
