@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Places from './components/Places.jsx';
 import { AVAILABLE_PLACES } from './data.js';
@@ -10,6 +10,12 @@ function App() {
   const modal = useRef();
   const selectedPlace = useRef();
   const [pickedPlaces, setPickedPlaces] = useState([]);
+
+  useEffect(()=>{
+  navigator.geolocation.getCurrentPosition((positin) => {
+    
+  })
+  },[])
 
   function handleStartRemovePlace(id) {
     modal.current.open();
