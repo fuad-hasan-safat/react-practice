@@ -5,6 +5,7 @@ import { AVAILABLE_PLACES } from './data.js';
 import Modal from './components/Modal.jsx';
 import DeleteConfirmation from './components/DeleteConfirmation.jsx';
 import logoImg from './assets/logo.png';
+import { sortPlacesByDistance } from './loc.js';
 
 function App() {
   const modal = useRef();
@@ -13,7 +14,7 @@ function App() {
 
   useEffect(()=>{
   navigator.geolocation.getCurrentPosition((positin) => {
-    
+    const sortedPlace = sortPlacesByDistance()
   })
   },[])
 
