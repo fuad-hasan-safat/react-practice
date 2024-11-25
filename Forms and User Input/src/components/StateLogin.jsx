@@ -7,8 +7,17 @@ export default function Login() {
     password: ""
   });
 
+  const [didEdit, setDidEdit] = useState({
+    email: false,
+    password: false
+  });
+
   const emailIsInvalid = enteredValues.email.trim() !== '' && 
     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(enteredValues.email);
+
+  const passwordIsInvalid = 
+    enteredValues.password.trim() !== '' && 
+    !/^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/.test(enteredValues.password);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -20,6 +29,18 @@ export default function Login() {
     setEnteredValues({
       ...enteredValues,
       [event.target.name]: event.target.value
+    });
+
+    setDidEdit({
+      ...didEdit,
+      [event.target.name]: false
+    });
+  }
+
+  function handleInputBlur(event) {
+    setDidEdit({
+      ...didEdit,
+      [event.target.name]: true
     });
   }
 
@@ -35,10 +56,11 @@ export default function Login() {
             type="email"
             name="email"
             onChange={handleInputChange}
+            onBlur={handleInputBlur}
             value={enteredValues.email}
           />
           <div className="control-error">
-            {emailIsInvalid && <p>Please enter a valid email</p>}
+            {emailIsInvalid && didEdit.email && <p>Please enter a valid email</p>}
           </div>
         </div>
 
@@ -49,8 +71,15 @@ export default function Login() {
             type="password"
             name="password"
             onChange={handleInputChange}
+            onBlur={handleInputBlur}
             value={enteredValues.password}
           />
+          <div className="control-error">
+            {passwordIsInvalid && didEdit.password && <p>Please enter a valid password</p>}
+          </div>
+          <div className="control-help">
+            <p>Password must contain at least 8 characters, one uppercase letter, and one special character (!@#$%^&*)</p>
+          </div>
         </div>
       </div>
 

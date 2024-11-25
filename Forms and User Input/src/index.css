@@ -158,3 +158,10 @@ fieldset {
   background-color: transparent;
   color: #869999;
 }
+
+.control-help {
+  width: auto;
+  font-size: 0.8rem;
+  color: #f4eaea;
+  margin-top: 0.25rem;
+}
