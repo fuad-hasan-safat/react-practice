@@ -1,9 +1,11 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 
-// A reusable component to track mouse position
 const MousePosition = ({ render }) => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState({
+    x: 0,
+    y: 0,
+  });
 
   useEffect(() => {
     const handleMousePositionChange = (e) => {
@@ -20,45 +22,43 @@ const MousePosition = ({ render }) => {
     };
   }, []);
 
-  // Call the render function with the current mouse position
-  return render(mousePosition);
+  return render({ mousePosition });
 };
 
-// This component should not receive any props
-const PanelMouseLogger = ({ mousePosition }) => {
+const PanelMouseLogger = () => {
   return (
     <div className="BasicTracker">
       <p>Mouse position:</p>
-      <div className="Row">
-        <span>x: {mousePosition.x}</span>
-        <span>y: {mousePosition.y}</span>
-      </div>
+      <MousePosition
+        render={({ mousePosition }) => (
+          <div className="Row">
+            <span>x: {mousePosition.x}</span>
+            <span>y: {mousePosition.y}</span>
+          </div>
+        )}
+      />
     </div>
   );
 };
 
-// This component should not receive any props
-const PointMouseLogger = ({ mousePosition }) => {
+const PointMouseLogger = () => {
   return (
-    <p>
-      ({mousePosition.x}, {mousePosition.y})
-    </p>
+    <MousePosition
+      render={({ mousePosition }) => (
+        <p>
+          ({mousePosition.x}, {mousePosition.y})
+        </p>
+      )}
+    />
   );
 };
 
 function App() {
   return (
     <div className="App">
-      <header className="Header">Render Props example</header>
-      {/* Use the MousePosition component with the render props pattern */}
-      <MousePosition
-        render={(mousePosition) => (
-          <>
-            <PanelMouseLogger mousePosition={mousePosition} />
-            <PointMouseLogger mousePosition={mousePosition} />
-          </>
-        )}
-      />
+      <header className="Header">Little Lemon Restaurant 🍕</header>
+      <PanelMouseLogger />
+      <PointMouseLogger />
     </div>
   );
 }
