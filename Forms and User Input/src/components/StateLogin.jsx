@@ -2,6 +2,10 @@ import Input from './Input.jsx';
 import { isEmail, isNotEmpty, hasMinLength } from '../util/validation.js';
 import { useInput } from '../hooks/useInput.js';
 
+// 1. Create a form with two input fields for email and password.
+// 2. Add a reset button that clears the input fields.
+// 3. Add a login button that logs the email and password to the console.
+
 export default function Login() {
   const {
     value: emailValue,
